@@ -1,0 +1,11 @@
+export const INVALID_USER = 'Invalid username/email.';
+export const INVALID_PASS = 'Invalid password.';
+export const STATUS_PENDING = 'Your account is not verified. Please verify your account.';
+export const STATUS_VERIFIED = 'Please complete registration.';
+export const STATUS_LOCKED = 'Your account is locked. Please contact admin.';
+export const COMPANY_EXISTS = 'Company already registered. Please contact your admin.';
+export const EMAIL_EXISTS = 'Email already registered. Please sign in to continue.';
+export const PHONE_EXISTS = 'Phone number already registered. Please sign in to continue.';
+export const USERNAME_TAKEN = 'Username taken.';
+export const REGISTERED = 'Registration already complete. Please sign in to continue.';
+export const INVALID_EMAIL = 'Invalid email.';

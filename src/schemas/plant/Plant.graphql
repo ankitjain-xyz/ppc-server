@@ -1,0 +1,27 @@
+type Plant {
+  id: ID!
+  name: String
+  city: String
+  code: String
+}
+
+type AddPlantResponse {
+  errors: [Error!]
+  plant: Plant
+}
+
+input UpdatePlantInput {
+  name: String
+  city: String
+  code: String
+}
+
+type Query {
+  plant(id: ID!): Plant
+  plants(userId: ID): [Plant!]
+}
+
+type Mutation {
+  addPlant(name: String!, code: String!): AddPlantResponse!
+  updatePlant(id: ID!, params: UpdatePlantInput!): AddPlantResponse!
+}

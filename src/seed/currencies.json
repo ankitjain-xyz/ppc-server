@@ -1,0 +1,22 @@
+[
+  {
+    "value": "INR",
+    "symbol": "₹",
+    "default": true
+  },
+  {
+    "value": "USD",
+    "symbol": "$",
+    "default": false
+  },
+  {
+    "value": "EUR",
+    "symbol": "€",
+    "default": false
+  },
+  {
+    "value": "GBP",
+    "symbol": "£",
+    "default": false
+  }
+]

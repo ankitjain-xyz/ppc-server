@@ -1,0 +1,29 @@
+type MaterialAttribute {
+  id: ID!
+  value: String
+}
+
+type Currency {
+  id: ID!
+  value: String
+  default: Boolean
+  symbol: String
+}
+
+type MeasuringUnit {
+  id: ID!
+  value: String
+}
+
+type Role {
+  id: ID!
+  name: String
+  value: String
+}
+
+type Query {
+  materialAttributes: [MaterialAttribute!]
+  currencies: [Currency!]
+  measuringUnits: [MeasuringUnit!]
+  roles: [Role!]
+}

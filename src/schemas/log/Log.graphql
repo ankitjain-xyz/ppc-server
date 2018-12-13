@@ -1,0 +1,40 @@
+type Log {
+  user: User!
+  target: Target!
+  against: Target
+  createdAt: Date!
+  body: String
+  tags: [User!]
+  assignee: User
+  status: String
+  logType: String
+}
+
+input LogsInput {
+  targetId: ID
+  logTypes: [String!]
+}
+
+input CommentsInput {
+  targetId: ID
+}
+
+type AddCommentResponse {
+  errors: [Error!]
+  comment: Log
+}
+
+type Query {
+  logs(filter: LogsInput): [Log!]
+  comments(filter: CommentsInput): [Log!]
+  notifications: [Log!]
+}
+
+type Mutation {
+  addComment(target: TargetInput!, body: String!): AddCommentResponse!
+}
+
+type Subscription {
+  commentAdded(targetId: ID!): Log!
+  notificationAdded(userId: ID!): Log!
+}

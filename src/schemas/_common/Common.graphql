@@ -1,0 +1,35 @@
+scalar JSON
+scalar Upload
+scalar Date
+
+type Error {
+  path: String!
+  message: String!
+}
+
+type Permission {
+  action: String!
+  value: Boolean!
+}
+
+type Meta {
+  company: Company!
+  plant: Plant!
+}
+
+type Target {
+  kind: String!
+  item: Task!
+}
+
+type Task {
+  id: ID!
+  taskNo: String!
+  status: String!
+  taskType: String!
+}
+
+input TargetInput {
+  kind: String!
+  item: ID!
+}

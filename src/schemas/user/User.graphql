@@ -1,0 +1,98 @@
+type User {
+  id: ID!
+  firstName: String
+  lastName: String
+  username: String!
+  email: String
+  phone: String
+  role: String!
+  specialPermissions: [Permission!]
+  avatarColor: String
+  status: AccountStatus!
+  readNotificationsAt: Date
+  bookmarks: [Target]
+  meta: Meta!
+}
+
+enum AccountStatus {
+  PENDING
+  VERIFIED
+  ACTIVE
+  LOCKED
+}
+
+type SigninResponse {
+  token: String
+  errors: [Error!]
+}
+
+input SignupInput {
+  firstName: String!
+  lastName: String!
+  email: String!
+  companyName: String!
+  city: String!
+}
+
+type SignupResponse {
+  errors: [Error!]
+}
+
+input InviteUserInput {
+  email: String!
+  role: String!
+  plantId: ID
+}
+
+type InviteUsersResponse {
+  invitedUsersEmail: [String!]
+  errors: [Error!]
+}
+
+input AddUserInput {
+  username: String!
+  firstName: String!
+  lastName: String!
+  role: String!
+}
+
+type AddUsersResponse {
+  AddedUsersUsername: [String!]
+  errors: [Error!]
+}
+
+type UserResponse {
+  user: User
+  errors: [Error!]
+}
+
+input UsersInput {
+  status: String
+  firstName: String
+  lastName: String
+}
+
+type UsersResponse {
+  users: [User!]
+  errors: [Error!]
+}
+
+type Query {
+  user(id: ID): User
+  users(filter: UsersInput): [User!]
+}
+
+type Mutation {
+  verifyUser(username: String!): UserResponse!
+  signin(username: String!, password: String!): SigninResponse!
+  signup(user: SignupInput!): SignupResponse!
+  completeSignup(
+    email: String!
+    username: String!
+    password: String!
+  ): SignupResponse!
+  inviteUsers(users: [InviteUserInput!]!): InviteUsersResponse!
+  addUsers(users: [AddUserInput!]!): AddUsersResponse!
+  updatePassword(oldPassword: String!, newPassword: String!): [Error!]
+  forgotPassword(username: String!): [Error!]
+}
