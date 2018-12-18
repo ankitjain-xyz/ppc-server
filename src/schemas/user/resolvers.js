@@ -6,7 +6,6 @@ import {
   currency as Currency,
   materialAttribute as MaterialAttribute,
   measuringUnit as MeasuringUnit,
-  role as Role,
 } from '../../models/settings';
 import LogCreated from '../../models/log/logCreated';
 import getUserId from '../../utils/getUserId';
@@ -18,14 +17,16 @@ import sendEmail from '../../utils/email/sendEmail';
 import attributes from '../../seed/attributes';
 import currencies from '../../seed/currencies';
 import units from '../../seed/units';
-import roles from '../../seed/roles';
 import * as errors from './errors';
 
 export default {
   Query: {
     user: async (_, { id }, { token }) => {
       const userId = getUserId(token);
-      const user = await User.findById(id || userId).populate('meta.plant');
+      const user = await User
+        .findById(id || userId)
+        .populate('meta.company')
+        .populate('meta.plant');
       return user;
     },
     users: async (_, { filter }, { token, plantId }) => {
@@ -140,10 +141,24 @@ export default {
       }
       const company = await new Company({ name: companyName, domain }).save();
       const plant = await new Plant({ city, company: company.id }).save();
-      await Currency.create(currencies);
-      await MeasuringUnit.create(units);
-      await MaterialAttribute.create(attributes);
-      await Role.create(roles);
+      const meta = { company, plant };
+      const currenciesToBeAdded = currencies.map(c => ({
+        value: c.value,
+        symbol: c.symbol,
+        default: c.default,
+        meta,
+      }));
+      const unitsToBeAdded = units.map(a => ({
+        value: a.value,
+        meta,
+      }));
+      const attributesToBeAdded = attributes.map(a => ({
+        value: a.value,
+        meta,
+      }));
+      await Currency.create(currenciesToBeAdded);
+      await MeasuringUnit.create(unitsToBeAdded);
+      await MaterialAttribute.create(attributesToBeAdded);
       const newUser = await new User({
         firstName,
         lastName,

@@ -29,11 +29,3 @@ const measuringUnitSchema = new Schema({
 }, settingsSchemaOptions);
 
 export const measuringUnit = mongoose.model('MeasuringUnit', measuringUnitSchema);
-
-const roleSchema = new Schema({
-  name: String,
-  value: String,
-  meta: Meta,
-}, settingsSchemaOptions);
-
-export const role = mongoose.model('Role', roleSchema);

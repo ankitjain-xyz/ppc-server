@@ -15,15 +15,8 @@ type MeasuringUnit {
   value: String
 }
 
-type Role {
-  id: ID!
-  name: String
-  value: String
-}
-
 type Query {
   materialAttributes: [MaterialAttribute!]
   currencies: [Currency!]
   measuringUnits: [MeasuringUnit!]
-  roles: [Role!]
 }

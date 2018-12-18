@@ -8,15 +8,9 @@ const plantSchemaOptions = {
 };
 
 const plantSchema = new Schema({
-  city: {
-    type: String,
-  },
-  name: {
-    type: String,
-  },
-  code: {
-    type: String,
-  },
+  city: String,
+  name: String,
+  code: String,
   company: {
     type: ObjectId,
     required: true,

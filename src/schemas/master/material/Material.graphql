@@ -1,0 +1,69 @@
+type Material {
+  id: ID!
+  materialType: String
+  name: String
+  purchaseUnit: String
+  issueUnit: String
+  attributes: [AttributeWithMultipleValues]
+  recipe: Recipe
+}
+
+type MaterialVariant {
+  id: ID!
+  material: Material!
+  name: String
+  attributes: [AttributeWithSingleValue]
+  ptiConversionRate: Float
+  amount: Float
+  currency: String
+}
+
+type Recipe {
+  ingredients: [Material!]
+  steps: [Process!]
+}
+
+input RecipeInput {
+  ingredients: [ID!]
+  steps: [ID!]
+}
+
+type AddMaterialResponse {
+  errors: [Error]
+  material: Material
+}
+
+input AddMaterialInput {
+  materialType: String
+  name: String
+  purchaseUnit: String
+  issueUnit: String
+  attributes: [AttributeWithMultipleValuesInput!]
+  recipe: RecipeInput
+}
+
+type AddMaterialVariantResponse {
+  errors: [Error]
+  materialVariant: MaterialVariant
+}
+
+input AddMaterialVariantInput {
+  material: ID!
+  attributes: [AttributeWithSingleValueInput]
+  ptiConversionRate: Float
+  amount: Float
+  currency: String
+}
+
+type Query {
+  material(id: ID!): Material
+  materials(materialTypes: [String!]): [Material!]
+  materialVariants(materialId: ID!): [MaterialVariant!]
+}
+
+type Mutation {
+  addMaterial(material: AddMaterialInput!): AddMaterialResponse!
+  updateMaterial(material: AddMaterialInput!): AddMaterialResponse!
+  addMaterialVariant(material: AddMaterialVariantInput!): AddMaterialVariantResponse!
+  updateMaterialVariant(material: AddMaterialVariantInput!): AddMaterialVariantResponse!
+}

@@ -33,3 +33,23 @@ input TargetInput {
   kind: String!
   item: ID!
 }
+
+type AttributeWithMultipleValues {
+  name: String!
+  values: [JSON]
+}
+
+type AttributeWithSingleValue {
+  name: String!
+  value: JSON
+}
+
+input AttributeWithMultipleValuesInput {
+  name: String!
+  values: [JSON]
+}
+
+input AttributeWithSingleValueInput {
+  name: String!
+  value: JSON
+}

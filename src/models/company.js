@@ -13,9 +13,7 @@ const companySchema = new Schema({
     required: true,
     unique: true,
   },
-  domain: {
-    type: String,
-  },
+  domain: String,
 }, {
   timestamps: true,
 }, companySchemaOptions);

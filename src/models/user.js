@@ -10,24 +10,12 @@ const userSchemaOptions = {
 };
 
 const userSchema = new Schema({
-  firstName: {
-    type: String,
-  },
-  lastName: {
-    type: String,
-  },
-  username: {
-    type: String,
-  },
-  email: {
-    type: String,
-  },
-  phone: {
-    type: String,
-  },
-  password: {
-    type: String,
-  },
+  firstName: String,
+  lastName: String,
+  username: String,
+  email: String,
+  phone: String,
+  password: String,
   role: {
     type: String,
     required: true,
@@ -35,9 +23,7 @@ const userSchema = new Schema({
   specialPermissions: [{
     type: Permission,
   }],
-  avatarColor: {
-    type: String,
-  },
+  avatarColor: String,
   status: {
     type: String,
     enum: [
@@ -48,9 +34,7 @@ const userSchema = new Schema({
     ],
     default: 'PENDING',
   },
-  readNotificationsAt: {
-    type: Date,
-  },
+  readNotificationsAt: Date,
   bookmarks: [{
     type: Bookmark,
   }],
